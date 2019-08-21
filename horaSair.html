@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<script>
+
+    function calcularSaida() {
+
+        var horaChegada = document.getElementById("horaChegada").value;
+        var horaSaida = document.getElementById("horaSaida").value;
+        var horaRetorno = document.getElementById("horaRetorno").value;
+
+        const dateChegada = new Date();
+        const dateSaida = new Date();
+        const dateRetorno = new Date();
+
+        dateChegada.setHours(horaChegada.split(":")[0]);
+        dateChegada.setMinutes(horaChegada.split(":")[1]);
+        dateChegada.setSeconds(0);
+
+        dateSaida.setHours(horaSaida.split(":")[0]);
+        dateSaida.setMinutes(horaSaida.split(":")[1]);
+        dateSaida.setSeconds(0);
+
+        dateRetorno.setHours(horaRetorno.split(":")[0]);
+        dateRetorno.setMinutes(horaRetorno.split(":")[1]);
+        dateRetorno.setSeconds(0);
+
+        var horaManha = dateSaida.getTime() - dateChegada.getTime();
+
+        var millisecondToFinish = (28800000 - horaManha);
+
+        dateRetorno.setTime(dateRetorno.getTime() + millisecondToFinish);
+
+        document.getElementById("trSair").style.visibility = "visible";
+        document.getElementById("horaPodeSair").innerHTML = dateRetorno.getHours() + ":" + dateRetorno.getMinutes();
+    }
+
+</script>
+<html>
+	<head>
+		<title>Iuri</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body class="loading">
+		<div id="wrapper">
+			<div id="bg"></div>
+			<div id="overlay"></div>
+			<div id="main">
+
+				<!-- Header -->
+					<header id="header">
+						<h1>Iuri Menin</h1>
+						<p>Android Developer &nbsp;&bull;&nbsp; iOS Developer</p>
+						<nav>
+							<div align="center" style="margin-left: 35%;
+                            margin-right: 35%;
+                            background-color: rgba(255,255,255,0.8);
+                            width: 30%;
+                            padding-top: 1%;
+                            padding-bottom: 2%;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                            transition: 0.3s;">
+                                <table>
+                                    <tr>
+                                        <td class="input-color">Hora chegada:</td>
+                                        <td><input class="input-color" type="time" id="horaChegada"></td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td class="input-color">Hora saída:</td>
+                                        <td><input class="input-color" type="time" id="horaSaida"></td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td class="input-color">Hora Retorno:</td>
+                                        <td><input class="input-color" type="time" id="horaRetorno"></td>
+                                    </tr>
+    
+                                    <tr id="trSair" style="visibility: hidden;">
+                                        <td class="input-color">Você pode sair às:&nbsp;</td>
+                                        <td>
+                                            <span class="label input-color" id="horaPodeSair"></span>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+
+                                <button onclick='calcularSaida();'>Calcular</button>
+                            </div>
+						</nav>
+					</header>
+			</div>
+		</div>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script>
+			window.onload = function() { document.body.className = ''; }
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+	</body>
+</html>

@@ -31,3 +31,7 @@
 	#footer {
 		background-image: url("images/ie/footer.svg");
 	}
+
+	#clock-icon {
+		background-image: url("images/clock-regular.svg")
+	}

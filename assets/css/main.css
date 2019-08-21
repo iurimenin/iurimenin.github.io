@@ -1,6 +1,10 @@
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,900");
 @import url("font-awesome.min.css");
 
+.input-color {
+	color: black
+}
+
 /*
 	Aerial by HTML5 UP
 	html5up.net | @ajlkn
