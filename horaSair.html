@@ -30,7 +30,7 @@
         dateRetorno.setTime(dateRetorno.getTime() + millisecondToFinish);
 
         document.getElementById("trSair").style.visibility = "visible";
-        document.getElementById("horaPodeSair").innerHTML = dateRetorno.getHours() + ":" + dateRetorno.getMinutes();
+        document.getElementById("horaPodeSair").innerHTML = dateRetorno.toLocaleTimeString();
     }
 
 </script>
