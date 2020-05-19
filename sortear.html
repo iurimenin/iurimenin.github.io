@@ -18,8 +18,8 @@
 
         const random = people[Math.floor(Math.random() * people.length)];
 
-        document.getElementById("trSair").style.visibility = "visible";
-        document.getElementById("horaPodeSair").innerHTML = random;
+        document.getElementById("trProximo").style.visibility = "visible";
+        document.getElementById("nomeProximo").innerHTML = random;
     }
 
 </script>
@@ -54,10 +54,10 @@
                             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
                             transition: 0.3s;">
                                 <table>
-                                    <tr id="trSair" style="visibility: hidden;">
-                                        <td class="input-color">O próximo a fazer a diaria é:</td>
+                                    <tr id="trProximo" style="visibility: hidden;">
+                                        <td class="input-color">O próximo a fazer a diaria é:&nbsp;</td>
                                         <td>
-                                            <span class="label input-color" id="horaPodeSair"></span>
+                                            <span class="label input-color" id="nomeProximo"></span>
                                         </td>
                                     </tr>
                                     
