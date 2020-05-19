@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<script>
+
+    function sortear() {
+        const people = [
+            'Carlos',
+            'Cezar',
+            'Daiani',
+            'Elisandro',
+            'Jefferson',
+            'Iuri',
+            'Marcio',
+            'Matheus',
+            'Pablo',
+            'Rafael',
+        ];
+
+        const random = people[Math.floor(Math.random() * people.length)];
+
+        document.getElementById("trSair").style.visibility = "visible";
+        document.getElementById("horaPodeSair").innerHTML = random;
+    }
+
+</script>
+<html>
+	<head>
+		<title>Iuri</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body class="loading">
+		<div id="wrapper">
+			<div id="bg"></div>
+			<div id="overlay"></div>
+			<div id="main">
+
+				<!-- Header -->
+					<header id="header">
+						<h1>Iuri Menin</h1>
+						<p>Android Developer &nbsp;&bull;&nbsp; iOS Developer</p>
+						<nav>
+							<div align="center" style="margin-left: 35%;
+                            margin-right: 35%;
+                            background-color: rgba(255,255,255,0.8);
+                            width: 30%;
+                            padding-top: 1%;
+                            padding-bottom: 2%;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                            transition: 0.3s;">
+                                <table>
+                                    <tr id="trSair" style="visibility: hidden;">
+                                        <td class="input-color">O próximo a fazer a diaria é:</td>
+                                        <td>
+                                            <span class="label input-color" id="horaPodeSair"></span>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+
+                                <button onclick='sortear();'>Sortear</button>
+                            </div>
+						</nav>
+					</header>
+			</div>
+		</div>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script>
+			window.onload = function() { document.body.className = ''; }
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+	</body>
+</html>
