@@ -1,0 +1,192 @@
+---
+import { CONTENT, SITE, type Lang } from '../data/content';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = CONTENT[lang];
+---
+
+<section class="section" id="experience">
+  <div class="wrap reveal">
+    <h2 class="section-title"><span class="num">02</span>{t.experience.heading}</h2>
+
+    {
+      t.experience.jobs.map((job) => (
+        <article class="job">
+          <header class="job-head">
+            <h3>
+              {job.role}
+              <span class="at"> · </span>
+              {job.companyUrl ? (
+                <a href={job.companyUrl} target="_blank" rel="noopener noreferrer" class="company">
+                  {job.company}
+                  <Icon name="arrowUpRight" size={14} />
+                </a>
+              ) : (
+                <span class="company">{job.company}</span>
+              )}
+            </h3>
+            <p class="period">{job.period}</p>
+          </header>
+
+          <ol class="timeline">
+            {job.roles.map((r) => (
+              <li class="entry">
+                <div class="entry-head">
+                  <h4>{r.name}</h4>
+                  <span class="entry-period">{r.period}</span>
+                </div>
+                <ul class="bullets">
+                  {r.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        </article>
+      ))
+    }
+
+    <a class="btn btn-ghost cv" href={SITE.cvUrl} download>
+      <Icon name="download" size={17} />
+      {t.experience.cvLabel}
+    </a>
+  </div>
+</section>
+
+<style>
+  .job + .job {
+    margin-top: 3.5rem;
+  }
+
+  .job-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .job-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .at {
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .company {
+    color: var(--accent);
+  }
+
+  a.company {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  a.company:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .period {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .timeline {
+    position: relative;
+    margin: 0;
+    padding: 2rem 0 0 1.75rem;
+    list-style: none;
+    counter-reset: none;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 2.6rem;
+    bottom: 0.75rem;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--border-strong), transparent);
+  }
+
+  .entry {
+    position: relative;
+  }
+
+  .entry + .entry {
+    margin-top: 2.25rem;
+  }
+
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: -1.75rem;
+    top: 0.55rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1.5px solid var(--accent);
+  }
+
+  .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.85rem;
+  }
+
+  .entry-head h4 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .entry-period {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .bullets {
+    margin-top: 0.85rem;
+    display: grid;
+    gap: 0.65rem;
+    max-width: 72ch;
+  }
+
+  .bullets li {
+    position: relative;
+    padding-left: 1.15rem;
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+    line-height: 1.9;
+  }
+
+  .cv {
+    margin-top: 3rem;
+  }
+</style>

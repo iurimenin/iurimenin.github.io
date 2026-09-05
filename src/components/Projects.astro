@@ -1,0 +1,142 @@
+---
+import { CONTENT, type Lang } from '../data/content';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = CONTENT[lang];
+---
+
+<section class="section" id="projects">
+  <div class="wrap reveal">
+    <h2 class="section-title"><span class="num">03</span>{t.projects.heading}</h2>
+    <p class="lede intro">{t.projects.intro}</p>
+
+    <ul class="cards">
+      {
+        t.projects.items.map((p) => (
+          <li class="card">
+            <div class="card-head">
+              <h3>{p.name}</h3>
+              {p.status && <span class="status">{p.status}</span>}
+            </div>
+
+            <p class="desc">{p.description}</p>
+
+            <ul class="tag-row stack">
+              {p.stack.map((s) => (
+                <li class="tag">{s}</li>
+              ))}
+            </ul>
+
+            <div class="links">
+              {p.url && (
+                <a href={p.url} target="_blank" rel="noopener noreferrer">
+                  <Icon name="arrowUpRight" size={15} />
+                  {t.projects.visitLabel}
+                </a>
+              )}
+              {p.repo && (
+                <a href={p.repo} target="_blank" rel="noopener noreferrer">
+                  <Icon name="github" size={15} />
+                  {t.projects.repoLabel}
+                </a>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .intro {
+    margin-top: -1.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Flex em vez de grid: com um único projeto o card para em 420px em vez de
+     esticar pela largura inteira da página. */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .card {
+    display: flex;
+    flex: 1 1 300px;
+    max-width: 420px;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+  }
+
+  .card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .card-head h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .status {
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: var(--accent-glow);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+  }
+
+  .desc {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+    flex: 1;
+  }
+
+  .stack {
+    margin-top: 0.15rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    transition: color 0.18s ease;
+  }
+
+  .links a:hover {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,91 @@
+---
+import { CONTENT, type Lang } from '../data/content';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = CONTENT[lang];
+---
+
+<section class="section" id="about">
+  <div class="wrap reveal">
+    <h2 class="section-title"><span class="num">01</span>{t.about.heading}</h2>
+
+    <div class="grid">
+      <div class="prose">
+        {t.about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="skills">
+        <h3>{t.skills.heading}</h3>
+        <dl>
+          {
+            t.skills.groups.map((g) => (
+              <div class="group">
+                <dt>{g.label}</dt>
+                <dd>
+                  <ul class="tag-row">
+                    {g.items.map((i) => (
+                      <li class="tag">{i}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: start;
+  }
+
+  .prose p {
+    color: var(--text-muted);
+    font-size: 1.0625rem;
+    max-width: 60ch;
+  }
+
+  .prose p + p {
+    margin-top: 1.15rem;
+  }
+
+  .skills h3 {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .group + .group {
+    margin-top: 1.5rem;
+  }
+
+  dt {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  @media (min-width: 880px) {
+    .grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+</style>

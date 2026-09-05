@@ -1,0 +1,143 @@
+---
+import { CONTENT, type Lang } from '../data/content';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = CONTENT[lang];
+---
+
+<section class="section" id="education">
+  <div class="wrap reveal">
+    <h2 class="section-title"><span class="num">04</span>{t.education.heading}</h2>
+
+    <div class="grid">
+      <ul class="items">
+        {
+          t.education.items.map((e) => (
+            <li>
+              <span class="ico">
+                <Icon name="cap" size={17} />
+              </span>
+              <div>
+                <h3>{e.title}</h3>
+                <p class="org">{e.org}</p>
+                {e.note && <p class="note">{e.note}</p>}
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="langs">
+        <h3 class="langs-title">{t.education.languagesHeading}</h3>
+        <ul>
+          {
+            t.education.languages.map((l) => (
+              <li>
+                <span class="lang-name">{l.name}</span>
+                <span class="lang-level">{l.level}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: start;
+  }
+
+  .items {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .items li {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .ico {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--bg-soft);
+    color: var(--accent);
+  }
+
+  .items h3 {
+    font-size: 0.9875rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .org {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--accent);
+    margin-top: 0.15rem;
+  }
+
+  .note {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    margin-top: 0.2rem;
+  }
+
+  .langs {
+    padding: 1.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-soft);
+  }
+
+  .langs-title {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+  }
+
+  .langs ul {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .langs li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .lang-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  .lang-level {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 880px) {
+    .grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+</style>

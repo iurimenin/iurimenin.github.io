@@ -1,0 +1,103 @@
+---
+import { CONTENT, SITE, SOCIALS, type Lang } from '../data/content';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = CONTENT[lang];
+---
+
+<section class="section" id="contact">
+  <div class="wrap reveal contact">
+    <h2 class="section-title"><span class="num">05</span>{t.contact.heading}</h2>
+
+    <p class="lede text">{t.contact.text}</p>
+
+    <a class="btn btn-primary mail" href={`mailto:${SITE.email}`}>
+      <Icon name="mail" size={17} />
+      {SITE.email}
+    </a>
+
+    {
+      /* Para expor o telefone, preencha SITE.phone em src/data/content.ts
+         e descomente o bloco abaixo.
+      SITE.phone && (
+        <a class="btn btn-ghost" href={`tel:${SITE.phone.replace(/\D/g, '')}`}>
+          {SITE.phone}
+        </a>
+      )
+      */
+    }
+
+    <ul class="socials">
+      {
+        SOCIALS.map((s) => (
+          <li>
+            <a href={s.url} target="_blank" rel="me noopener noreferrer">
+              <Icon name={s.icon} size={17} />
+              <span>{s.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contact {
+    text-align: center;
+  }
+
+  .contact .section-title {
+    justify-content: center;
+  }
+
+  .contact .section-title::after {
+    display: none;
+  }
+
+  .text {
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  .mail {
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+  }
+
+  .socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-soft);
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    transition:
+      color 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .socials a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+</style>
