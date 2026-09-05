@@ -20,8 +20,16 @@ export const SITE = {
   // Coloque uma foto quadrada (~600x600) em public/avatar.jpg.
   // Se não colocar, o site mostra suas iniciais num círculo — sem quebrar.
   avatar: '/avatar.jpg',
-  // Coloque o PDF em public/cv.pdf para o botão de download funcionar.
-  cvUrl: '/cv.pdf',
+  // Link do CV. Aceita três formas:
+  //   'public/cv.pdf' local  →  '/cv.pdf'
+  //   link externo (Drive)   →  'https://drive.google.com/uc?export=download&id=ID'
+  //   sem CV                 →  null  (o botão some do site, sem deixar 404)
+  //
+  // Sobre o Drive: use SEMPRE o formato uc?export=download acima, não o
+  // /file/d/ID/view — o segundo abre o visualizador em vez de baixar. E para
+  // atualizar o currículo depois, substitua o arquivo em "Gerenciar versões";
+  // subir um arquivo novo gera outro ID e quebra este link.
+  cvUrl: null as string | null,
 };
 
 export const SOCIALS = [

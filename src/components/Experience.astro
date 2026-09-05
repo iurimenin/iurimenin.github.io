@@ -8,6 +8,11 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = CONTENT[lang];
+
+// O atributo `download` só vale para mesma origem — o navegador o ignora num
+// link externo. Então para o Drive abrimos em nova aba em vez de fingir download.
+const cvUrl = SITE.cvUrl;
+const cvIsExternal = !!cvUrl && /^https?:\/\//.test(cvUrl);
 ---
 
 <section class="section" id="experience">
@@ -52,10 +57,20 @@ const t = CONTENT[lang];
       ))
     }
 
-    <a class="btn btn-ghost cv" href={SITE.cvUrl} download>
-      <Icon name="download" size={17} />
-      {t.experience.cvLabel}
-    </a>
+    {
+      cvUrl && (
+        <a
+          class="btn btn-ghost cv"
+          href={cvUrl}
+          download={cvIsExternal ? undefined : true}
+          target={cvIsExternal ? '_blank' : undefined}
+          rel={cvIsExternal ? 'noopener noreferrer' : undefined}
+        >
+          <Icon name="download" size={17} />
+          {t.experience.cvLabel}
+        </a>
+      )
+    }
   </div>
 </section>
 
