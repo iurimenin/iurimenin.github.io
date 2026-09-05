@@ -27,8 +27,17 @@ Isso é de propósito: evita o site ficar meio traduzido.
 ## Arquivos que faltam em `public/`
 
 - `avatar.jpg` — sua foto, quadrada, ~600×600. Sem ela o hero mostra "IM".
-- `cv.pdf` — o currículo. Sem ele o botão "Baixar CV" dá 404.
 - `og.png` — imagem de preview no LinkedIn/WhatsApp/X, 1200×630.
+
+## Currículo
+
+Não fica no repositório. O botão "Baixar CV" aponta para a URL de exportação do
+Google Doc (`SITE.cvUrl` em `src/data/content.ts`), que devolve o documento ao
+vivo em PDF — editar o Doc já atualiza o site, sem rebuild.
+
+Isso depende do Doc continuar compartilhado como **qualquer pessoa com o link**.
+Se voltar para restrito, o botão passa a levar a uma tela de login em vez do PDF,
+e nada no build acusa isso.
 
 ## Publicar
 

@@ -20,16 +20,19 @@ export const SITE = {
   // Coloque uma foto quadrada (~600x600) em public/avatar.jpg.
   // Se não colocar, o site mostra suas iniciais num círculo — sem quebrar.
   avatar: '/avatar.jpg',
-  // Link do CV. Aceita três formas:
-  //   'public/cv.pdf' local  →  '/cv.pdf'
-  //   link externo (Drive)   →  'https://drive.google.com/uc?export=download&id=ID'
-  //   sem CV                 →  null  (o botão some do site, sem deixar 404)
+  // Currículo: URL de exportação do Google Docs. Ela devolve o documento AO VIVO
+  // em PDF, então basta editar o Doc que o site acompanha — nada pra rebuildar.
   //
-  // Sobre o Drive: use SEMPRE o formato uc?export=download acima, não o
-  // /file/d/ID/view — o segundo abre o visualizador em vez de baixar. E para
-  // atualizar o currículo depois, substitua o arquivo em "Gerenciar versões";
-  // subir um arquivo novo gera outro ID e quebra este link.
-  cvUrl: null as string | null,
+  // Duas condições para continuar funcionando:
+  //   1. O Doc precisa seguir compartilhado como "qualquer pessoa com o link".
+  //      Se voltar para restrito, este botão passa a devolver uma página de login.
+  //   2. Use /export?format=pdf, não o /edit que o Docs mostra na barra.
+  //
+  // Para tirar o CV do ar, troque por null — o botão some sem deixar link quebrado.
+  cvUrl:
+    'https://docs.google.com/document/d/1vUGnvC_DW2RB0t3fkU2lJhZNcA3FulQ1BHHz-mQi11A/export?format=pdf' as
+      | string
+      | null,
 };
 
 export const SOCIALS = [
