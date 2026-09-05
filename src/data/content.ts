@@ -190,11 +190,10 @@ export const CONTENT: Record<Lang, Content> = {
         {
           name: 'Nossa Escola Pato Branco',
           status: 'In progress',
-          // REVISAR: escrevi essa descrição sem conhecer o projeto. Me conte o que
-          // ele faz de verdade (é institucional? tem matrícula online? portal do
-          // aluno?) e eu reescrevo — ou edite direto aqui.
           description:
-            'Website for a school in Pato Branco, PR — built to give the school a proper presence online and make it easy for families to find what they need.',
+            'The website for my kids’ school in Pato Branco, PR. Built on my own time so the school has a real presence online and families can find what they need without chasing it through group chats.',
+          // REVISAR: não sei com o que você construiu esse site. Troque "Web"
+          // pelas tecnologias reais (WordPress? Astro? Next?).
           stack: ['Web'],
           url: 'https://nossaescolapb.com.br/',
         },
@@ -328,7 +327,7 @@ export const CONTENT: Record<Lang, Content> = {
           name: 'Nossa Escola Pato Branco',
           status: 'Em andamento',
           description:
-            'Site para uma escola de Pato Branco, PR — para dar à escola uma presença digital de verdade e facilitar a vida das famílias que procuram informação.',
+            'O site da escola dos meus filhos, em Pato Branco, PR. Construído no meu tempo livre para a escola ter uma presença digital de verdade e as famílias acharem o que precisam sem caçar em grupo de WhatsApp.',
           stack: ['Web'],
           url: 'https://nossaescolapb.com.br/',
         },
